@@ -1,0 +1,37 @@
+[[package]]
+name = "pyaudio-wheels"
+version = "0.0.1"
+description = "PortAudio Python Bindings"
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.9"
+content-hash = "c1a91cdafa3dab53591696744dd0898559ec519b20f51d0a1e61658e63d3bf8e"
+
+[metadata.files]
+pyaudio-wheels = [
+    {file = "pyaudio-wheels-0.0.1.tar.gz", hash = "sha256:69c2ec17857c90b36715efde923f97d66e5d27fa85646716a08c361ac2707f39"},
+    {file = "pyaudio_wheels-0.0.1-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:775ed03b23c0113718a0033e8419b85b2c077f2a6a16e094f86bd93850e87318"},
+    {file = "pyaudio_wheels-0.0.1-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:8d1097be87ebc7045244e5710621f61d6e0e04920700890efdd189609e128c54"},
+    {file = "pyaudio_wheels-0.0.1-cp35-cp35m-manylinux2010_i686.whl", hash = "sha256:88720d22f57276e5dee2bca26d13c650be2cb586ad4aaf613704f98f24960f8d"},
+    {file = "pyaudio_wheels-0.0.1-cp35-cp35m-manylinux2010_x86_64.whl", hash = "sha256:48b56f4b40390d7a11f0bb72949ff6878cc6ebb3371fad6f0fe503875e6cd075"},
+    {file = "pyaudio_wheels-0.0.1-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:94caac654d10ab4fb4b316ceb99cc9b683130bc4cff196d02c18173ec5894370"},
+    {file = "pyaudio_wheels-0.0.1-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:6a14d4d4832c036c6bfe2e28a83bbf0ae9a64fa61fff5ef2af6a7254c32dc4df"},
+    {file = "pyaudio_wheels-0.0.1-cp36-cp36m-manylinux2010_i686.whl", hash = "sha256:b75b8e418813bfdc35a176723f5b2839179ce3126518ec70174315d4e776ad31"},
+    {file = "pyaudio_wheels-0.0.1-cp36-cp36m-manylinux2010_x86_64.whl", hash = "sha256:a8302bd25a7c03c990470b6b4b0eb859566e5a7bc1a63478fb44b05c8cbf7ea1"},
+    {file = "pyaudio_wheels-0.0.1-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:152ff3c76c185e350f9355291c0c0c0032babc3cc671bc679a80257c1d2e103f"},
+    {file = "pyaudio_wheels-0.0.1-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:e29733dc2817f0f998d76e4ed1f8567a83283ea5b0ffb456b1a89ff62b0be0c8"},
+    {file = "pyaudio_wheels-0.0.1-cp37-cp37m-manylinux2010_i686.whl", hash = "sha256:9f9b63d11f90c0b893ae2abfd4bd89b02b4d9d1da953b82b357cba93f5f19a82"},
+    {file = "pyaudio_wheels-0.0.1-cp37-cp37m-manylinux2010_x86_64.whl", hash = "sha256:6aef550727662e41a54544c9d727ef319cd272a33ba3ea10ce784351b1f04df2"},
+    {file = "pyaudio_wheels-0.0.1-cp38-cp38-manylinux1_i686.whl", hash = "sha256:326f9562cbc2b550f0320c4ceb7819a44a846febcb9f1907d02bdf2080fe293b"},
+    {file = "pyaudio_wheels-0.0.1-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:576b4817622749540b51a00d1e410c682cafb087147c3f93091a308d618ca309"},
+    {file = "pyaudio_wheels-0.0.1-cp38-cp38-manylinux2010_i686.whl", hash = "sha256:2734ef1843da48bbcd6c340d91e4120966c62f1d0b16a4e583f4688fb2b65b77"},
+    {file = "pyaudio_wheels-0.0.1-cp38-cp38-manylinux2010_x86_64.whl", hash = "sha256:98203eab2353dabd1df95e0882fe92bad3ffb2c7bcbe729ed625cccb0232b1b1"},
+    {file = "pyaudio_wheels-0.0.1-cp39-cp39-manylinux1_i686.whl", hash = "sha256:38785abc73c252d0e5e8182a053f82004a56c68f5e4a214a1dede66a3f7f9fba"},
+    {file = "pyaudio_wheels-0.0.1-cp39-cp39-manylinux1_x86_64.whl", hash = "sha256:7ee3d6b1ae976b7d643bae52a3ca5588e8f74397b688025bdb33a3e9985c6a81"},
+    {file = "pyaudio_wheels-0.0.1-cp39-cp39-manylinux2010_i686.whl", hash = "sha256:81f41968807fccc91bb796ddd6969c7cc92f220f1a1fc3f4891b525c00d29658"},
+    {file = "pyaudio_wheels-0.0.1-cp39-cp39-manylinux2010_x86_64.whl", hash = "sha256:cd13b66541237eac6e7b7658a64e48637add3a1431421599ad67a1b7f9b18d68"},
+]
