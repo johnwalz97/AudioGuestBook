@@ -12,6 +12,7 @@
 #define SDCARD_MOSI_PIN 7
 #define SDCARD_SCK_PIN 14
 #define HOOK_PIN 0
+#define PLAYBACK_BUTTON_PIN 1
 
 AudioInputI2S i2sInput;
 AudioRecordQueue queue1;
@@ -35,6 +36,7 @@ char filename[15];
 File frec;
 
 Bounce buttonRecord = Bounce(HOOK_PIN, 40);
+Bounce buttonPlay = Bounce(PLAYBACK_BUTTON_PIN, 8);
 
 enum Mode
 {
@@ -55,10 +57,15 @@ void wait(unsigned int milliseconds)
   while (msec <= milliseconds)
   {
     buttonRecord.update();
+    buttonPlay.update();
     if (buttonRecord.fell())
-      Serial.println("Button (pin 0) fell");
+      Serial.println("Button (pin 0) Press");
+    if (buttonPlay.fell())
+      Serial.println("Button (pin 1) Press");
     if (buttonRecord.rose())
-      Serial.println("Button (pin 0) rose");
+      Serial.println("Button (pin 0) Release");
+    if (buttonPlay.rose())
+      Serial.println("Button (pin 1) Release");
   }
 }
 
@@ -81,14 +88,15 @@ void setup()
   Serial.println(__FILE__ __DATE__);
 
   pinMode(HOOK_PIN, INPUT_PULLUP);
+  pinMode(PLAYBACK_BUTTON_PIN, INPUT_PULLUP);
 
   AudioMemory(60);
 
   // Enable the audio shield, select input, and enable output
   sgtl5000_1.enable();
   sgtl5000_1.inputSelect(AUDIO_INPUT_MIC);
-  sgtl5000_1.volume(2);
-  sgtl5000_1.micGain(15);
+  sgtl5000_1.volume(.75);
+  sgtl5000_1.micGain(20);
 
   // // Play a beep to indicate system is online
   waveform1.begin(WAVEFORM_SINE);
@@ -140,14 +148,12 @@ bool startRecording()
   return false;
 }
 
-void continueRecording()
-{
-  if (queue1.available() >= 2)
-  {
+void continueRecording() {
+  if (queue1.available() >= 2) {
     byte buffer[512];
     memcpy(buffer, queue1.readBuffer(), 256);
     queue1.freeBuffer();
-    memcpy(buffer + 256, queue1.readBuffer(), 256);
+    memcpy(buffer+256, queue1.readBuffer(), 256);
     queue1.freeBuffer();
     frec.write(buffer, 512);
   }
@@ -164,9 +170,53 @@ void stopRecording()
   frec.close();
 }
 
+void playAllRecordings()
+{
+  File dir = SD.open("/");
+
+  while (true)
+  {
+    File entry = dir.openNextFile();
+    if (!entry)
+    {
+      Serial.println("No more files");
+      entry.close();
+      break;
+    }
+
+    int8_t len = strlen(entry.name());
+    if (strstr(entry.name() + (len - 4), ".RAW"))
+    {
+      Serial.print("Now playing ");
+      Serial.println(entry.name());
+
+      waveform1.amplitude(0.5);
+      wait(250);
+      waveform1.amplitude(0);
+
+      playRaw1.play(entry.name());
+    }
+    entry.close();
+
+    while (playRaw1.isPlaying())
+    {
+      buttonRecord.update();
+      buttonPlay.update();
+      if (buttonPlay.rose() || buttonRecord.fell())
+      {
+        playRaw1.stop();
+        break;
+      }
+    }
+  }
+
+  mode = Mode::Ready;
+}
+
 void loop()
 {
   buttonRecord.update();
+  buttonPlay.update();
 
   switch (mode)
   {
@@ -175,6 +225,12 @@ void loop()
     {
       Serial.println("Handset lifted");
       mode = Mode::Prompting;
+    }
+    else if (buttonPlay.rose())
+    {
+      Serial.println("Button (playButton) Press");
+      mode = Mode::Playing;
+      playAllRecordings();
     }
     break;
 
